@@ -1,0 +1,5 @@
+org\taskminigame\Controller\Wiring.class
+org\taskminigame\View\Wiring.class
+org\taskminigame\Event.class
+org\taskminigame\TaskMinigame.class
+org\taskminigame\Model\WiringHolder.class

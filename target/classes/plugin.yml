@@ -1,0 +1,7 @@
+name: TaskMinigame
+version: '1.0'
+main: org.taskminigame.TaskMinigame
+api-version: 1.20
+commands:
+  sus:
+    usage: /sus wiring <player>
