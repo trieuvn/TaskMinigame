@@ -8,13 +8,14 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.taskminigame.Model.WiringHolder;
 
-import static org.taskminigame.Controller.Wiring.done;
+import org.taskminigame.Controller.Wiring;
 
 public class Event implements Listener {
     @EventHandler
     public void onPlayerSelect(InventoryClickEvent event){
 
         Inventory inventory = event.getClickedInventory();
+        //Wiring
         if (inventory != null && inventory.getHolder() instanceof WiringHolder){
             Player player = (Player) event.getWhoClicked();
             event.setCancelled(true);
@@ -22,9 +23,9 @@ public class Event implements Listener {
             ItemStack item = event.getCurrentItem();
             //Mở hộp thoại message
             if (item == null && event.getRawSlot() == 31) {
-                done(inventory);
+                Wiring.done(inventory);
             }
-
         }
+        
     }
 }

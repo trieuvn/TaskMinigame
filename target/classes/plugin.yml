@@ -4,4 +4,4 @@ main: org.taskminigame.TaskMinigame
 api-version: 1.20
 commands:
   sus:
-    usage: /sus wiring <player>
+    usage: /sus garbage <player>

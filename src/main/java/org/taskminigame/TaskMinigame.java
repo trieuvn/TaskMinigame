@@ -8,7 +8,14 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import static org.bukkit.Bukkit.getServer;
-import static org.taskminigame.Controller.Wiring.open;
+import org.taskminigame.Controller.Clean;
+import org.taskminigame.Controller.Clean;
+import org.taskminigame.Controller.Download;
+import org.taskminigame.Controller.Garbage;
+import org.taskminigame.Controller.Navigation;
+import org.taskminigame.Controller.Reactor;
+import org.taskminigame.Controller.Refuel;
+import org.taskminigame.Controller.Wiring;
 
 public final class TaskMinigame extends JavaPlugin {
 
@@ -35,9 +42,58 @@ public final class TaskMinigame extends JavaPlugin {
                     Player targetPlayer = getServer().getPlayer(targetPlayerName);
                     if (targetPlayer == null)
                         return true;
-                    open(targetPlayer);
+                    Wiring.open(targetPlayer);
+                }
+                
+                if (args[0].equals("clean")){
+                    String targetPlayerName = args[1];
+                    Player targetPlayer = getServer().getPlayer(targetPlayerName);
+                    if (targetPlayer == null)
+                        return true;
+                    Clean.open(targetPlayer);
+                }
+                
+                if (args[0].equals("download")){
+                    String targetPlayerName = args[1];
+                    Player targetPlayer = getServer().getPlayer(targetPlayerName);
+                    if (targetPlayer == null)
+                        return true;
+                    Download.open(targetPlayer);
+                }
+                
+                if (args[0].equals("garbage")){
+                    String targetPlayerName = args[1];
+                    Player targetPlayer = getServer().getPlayer(targetPlayerName);
+                    if (targetPlayer == null)
+                        return true;
+                    Garbage.open(targetPlayer);
+                }
+                
+                if (args[0].equals("navigation")){
+                    String targetPlayerName = args[1];
+                    Player targetPlayer = getServer().getPlayer(targetPlayerName);
+                    if (targetPlayer == null)
+                        return true;
+                    Navigation.open(targetPlayer);
+                }
+                
+                if (args[0].equals("reactor")){
+                    String targetPlayerName = args[1];
+                    Player targetPlayer = getServer().getPlayer(targetPlayerName);
+                    if (targetPlayer == null)
+                        return true;
+                    Reactor.open(targetPlayer);
+                }
+                
+                if (args[0].equals("refuel")){
+                    String targetPlayerName = args[1];
+                    Player targetPlayer = getServer().getPlayer(targetPlayerName);
+                    if (targetPlayer == null)
+                        return true;
+                    Refuel.open(targetPlayer);
                 }
             }
+            
         }
         return true;
     }

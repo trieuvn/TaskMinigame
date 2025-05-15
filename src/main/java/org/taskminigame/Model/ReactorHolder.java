@@ -4,12 +4,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 
-public class WiringHolder implements InventoryHolder {
+public class ReactorHolder implements InventoryHolder {
     private final Player player;
-    
-    public int state = 1;
 
-    public WiringHolder(Player player) {
+    public ReactorHolder(Player player) {
         this.player = player;
     }
 
