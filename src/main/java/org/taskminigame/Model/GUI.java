@@ -13,11 +13,44 @@ import org.bukkit.inventory.InventoryHolder;
  *
  * @author Admin
  */
-public class GUI {
+public class GUI implements InventoryHolder{
     private Inventory inventory;
+    private final Player player;
     private int state;
+    private int type;
     
-    public GUI(Player player, InventoryHolder owner, int slot){
-        inventory = Bukkit.createInventory(new WiringHolder(player),54);
+    public GUI(Player player, int type, int slot){
+        inventory = Bukkit.createInventory(this,slot);
+        this.player = player;
+        this.type = type;
+        this.state = 1;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 }

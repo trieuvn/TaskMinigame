@@ -16,13 +16,17 @@ import org.taskminigame.Controller.Navigation;
 import org.taskminigame.Controller.Reactor;
 import org.taskminigame.Controller.Refuel;
 import org.taskminigame.Controller.Wiring;
+import org.taskminigame.Event.EventListener;
+import org.taskminigame.Event.GUIClickEvent;
+import org.taskminigame.Event.GUIListener;
 
 public final class TaskMinigame extends JavaPlugin {
 
     @Override
     public void onEnable() {
         // Plugin startup logic
-        getServer().getPluginManager().registerEvents(new Event(),this);
+        getServer().getPluginManager().registerEvents(new GUIListener(),this);
+        getServer().getPluginManager().registerEvents(new EventListener(),this);
         getCommand("sus").setExecutor(this);
     }
 

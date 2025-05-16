@@ -13,18 +13,20 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.taskminigame.Model.GUI;
 
-import static org.bukkit.Bukkit.getServer;
-import static org.taskminigame.View.Wiring.State1;
-import static org.taskminigame.View.Wiring.State2;
+import static org.taskminigame.View.Wiring.*;
 
 public class Wiring {
     public static void open(Player player){
-        Inventory gui = State1(player);
-        player.openInventory(gui);
+        GUI gui = State1(player);
+        player.openInventory(gui.getInventory());
     }
 
-    public static void done(Inventory gui){
-        State2(gui);
+    public static void done(GUI gui){
+        if (gui.getState() == 1){
+            State2(gui);
+            gui.setState(2);
+        }
     }
 }

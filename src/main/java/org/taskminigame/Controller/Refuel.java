@@ -5,8 +5,9 @@
 package org.taskminigame.Controller;
 
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
-import static org.taskminigame.View.Refuel.State1;
+import org.taskminigame.Model.GUI;
+import org.taskminigame.View.Clean;
+
 
 /**
  *
@@ -14,7 +15,7 @@ import static org.taskminigame.View.Refuel.State1;
  */
 public class Refuel {
     public static void open(Player player){
-        Inventory gui = State1(player);
-        player.openInventory(gui);
+        GUI gui = Clean.State1(player);
+        player.openInventory(gui.getInventory());
     }
 }
