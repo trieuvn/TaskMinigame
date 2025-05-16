@@ -13,14 +13,17 @@ public class EventListener implements Listener {
     public void onPlayerSelect(GUIClickEvent event){
         GUI gui = event.getGui();
         Inventory inventory = gui.getInventory();
-        if (inventory != null && gui.getType() == 119) {
-            Player player = (Player) event.getOriginalEvent().getWhoClicked();
-            event.getOriginalEvent().setCancelled(true);
-            player.updateInventory();
-            ItemStack item = event.getClickedItem();
-            if (item == null && event.getRawSlot() == 31) {
-                Wiring.done(event.getGui());
+        if (inventory != null) {
+            if (gui.getType() == 119) {
+                Player player = (Player) event.getOriginalEvent().getWhoClicked();
+                event.getOriginalEvent().setCancelled(true);
+                player.updateInventory();
+                ItemStack item = event.getClickedItem();
+                if (item == null && event.getRawSlot() == 31) {
+                    Wiring.done(event.getGui());
+                }
             }
+
         }
     }
 }

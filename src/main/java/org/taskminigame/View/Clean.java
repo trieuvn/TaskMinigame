@@ -26,4 +26,16 @@ public class Clean {
         gui.getInventory().setItem(0,res);
         return gui;
     }
+
+    public static void setTrash(GUI gui, int loc){
+        gui.getInventory().setItem(loc, Trash());
+    }
+
+    public static ItemStack Trash(){
+        ItemStack trash = new ItemStack(Material.APPLE);
+        ItemMeta meta = trash.getItemMeta();
+        meta.displayName(Component.text("Trash"));
+        trash.setItemMeta(meta);
+        return trash;
+    }
 }
