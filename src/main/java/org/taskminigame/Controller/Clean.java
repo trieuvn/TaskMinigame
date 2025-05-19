@@ -26,11 +26,15 @@ public class Clean {
     */
     public static void open(Player player){
         GUI gui = State1(player);
-        for (int i=0;i<6;i++){
-            setTrash(gui, getRandomLocation());
+        int[] locList = getRandomLocation(5);
+        for (int i : locList){
+            setTrash(gui, i);
         }
-        player.openInventory(gui.getInventory());
-        gui.getInventory().isEmpty()
+        player.openInventory(gui.getInventory());     
+    }
+    
+    public static void moveTrash(int loc){
+        
     }
 
     public static int[] getRandomLocation(int size){
