@@ -4,8 +4,10 @@
  */
 package org.taskminigame.Controller;
 
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.taskminigame.Model.GUI;
 
 import java.util.ArrayList;
@@ -33,8 +35,14 @@ public class Clean {
         player.openInventory(gui.getInventory());     
     }
     
-    public static void moveTrash(int loc){
-        
+    public static void moveTrash(Inventory inventory, ItemStack itemStack, int loc){
+        ItemStack temp = itemStack;
+        inventory.remove(itemStack);
+        if (loc == 2 || loc == 11 || loc == 20 || loc == 29 || loc == 38 || loc == 47){
+            return ;
+        }
+        inventory.setItem(loc-1,temp);
+
     }
 
     public static int[] getRandomLocation(int size){

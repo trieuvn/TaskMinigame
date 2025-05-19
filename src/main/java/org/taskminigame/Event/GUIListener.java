@@ -10,6 +10,7 @@ public class GUIListener implements Listener {
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
+        event.getWhoClicked().sendMessage("alofdjfijdfd");
         // Kiểm tra xem inventory có phải là của GUI không
         if (event.getInventory().getHolder() instanceof GUI) {
             GUI gui = (GUI) event.getInventory().getHolder();
