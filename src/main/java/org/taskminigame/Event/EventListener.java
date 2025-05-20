@@ -6,6 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.taskminigame.Controller.Clean;
+import org.taskminigame.Controller.Download;
 import org.taskminigame.Controller.Wiring;
 import org.taskminigame.Model.GUI;
 
@@ -27,6 +28,18 @@ public class EventListener implements Listener {
                 }
             }
 
+            //Download
+            if (gui.getType() == 121) {
+                Player player = (Player) event.getOriginalEvent().getWhoClicked();
+                event.getOriginalEvent().setCancelled(true);
+                player.updateInventory();
+                ItemStack item = event.getClickedItem();
+                //39 40 41
+                if (item == null && (event.getRawSlot() == 39 || event.getRawSlot() == 40 || event.getRawSlot() == 41)) {
+                    Download.startDownload(event.getGui());
+                }
+            }
+
             //Clean
             if (gui.getType() == 131) {
                 Player player = (Player) event.getOriginalEvent().getWhoClicked();
@@ -34,7 +47,7 @@ public class EventListener implements Listener {
                 player.updateInventory();
                 ItemStack item = event.getClickedItem();
                 if (item != null && event.getRawSlot() != 0) {
-                    Clean.moveTrash(inventory,item, event.getRawSlot());
+                    Clean.moveTrash(gui,item, event.getRawSlot());
                 }
             }
         }

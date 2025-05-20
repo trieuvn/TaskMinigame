@@ -5,11 +5,16 @@
 package org.taskminigame.View;
 
 import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.taskminigame.Model.GUI;
+import org.bukkit.Sound;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.plugin.java.JavaPlugin;
 
 /**
  *
@@ -27,12 +32,18 @@ public class Clean {
         return gui;
     }
 
+    public static void State2(GUI gui) {
+        Inventory inventory = gui.getInventory();
+        Player player = gui.getPlayer();
+        gui.success();
+    }
+
     public static void setTrash(GUI gui, int loc){
         gui.getInventory().setItem(loc, Trash());
     }
 
     public static ItemStack Trash(){
-        ItemStack trash = new ItemStack(Material.APPLE);
+        ItemStack trash = new ItemStack(Material.FEATHER);
         ItemMeta meta = trash.getItemMeta();
         meta.displayName(Component.text("Trash"));
         trash.setItemMeta(meta);

@@ -1,8 +1,10 @@
 org\taskminigame\View\Download.class
 org\taskminigame\View\Reactor.class
+org\taskminigame\Controller\Download$1.class
 org\taskminigame\View\Garbage.class
 org\taskminigame\Controller\Garbage.class
 org\taskminigame\Controller\Wiring.class
+org\taskminigame\Model\GUI$1.class
 org\taskminigame\Event\GUIListener.class
 org\taskminigame\View\Navigation.class
 org\taskminigame\Controller\Reactor.class
