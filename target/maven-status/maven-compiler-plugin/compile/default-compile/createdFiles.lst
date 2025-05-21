@@ -1,4 +1,5 @@
 org\taskminigame\View\Download.class
+org\taskminigame\Controller\Garbage$1.class
 org\taskminigame\View\Reactor.class
 org\taskminigame\Controller\Download$1.class
 org\taskminigame\View\Garbage.class

@@ -7,6 +7,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.taskminigame.Controller.Clean;
 import org.taskminigame.Controller.Download;
+import org.taskminigame.Controller.Garbage;
 import org.taskminigame.Controller.Wiring;
 import org.taskminigame.Model.GUI;
 
@@ -18,7 +19,7 @@ public class EventListener implements Listener {
         Inventory inventory = gui.getInventory();
         if (inventory != null) {
             //Wiring
-            if (gui.getType() == 119) {
+            if (gui.getType() == 119 && gui.getState() == 1) {
                 Player player = (Player) event.getOriginalEvent().getWhoClicked();
                 event.getOriginalEvent().setCancelled(true);
                 player.updateInventory();
@@ -29,7 +30,7 @@ public class EventListener implements Listener {
             }
 
             //Download
-            if (gui.getType() == 121) {
+            if (gui.getType() == 121 && gui.getState() == 1) {
                 Player player = (Player) event.getOriginalEvent().getWhoClicked();
                 event.getOriginalEvent().setCancelled(true);
                 player.updateInventory();
@@ -37,6 +38,18 @@ public class EventListener implements Listener {
                 //39 40 41
                 if (item == null && (event.getRawSlot() == 39 || event.getRawSlot() == 40 || event.getRawSlot() == 41)) {
                     Download.startDownload(event.getGui());
+                }
+            }
+
+            //Garbage
+            if (gui.getType() == 129 && gui.getState() == 1) {
+                Player player = (Player) event.getOriginalEvent().getWhoClicked();
+                event.getOriginalEvent().setCancelled(true);
+                player.updateInventory();
+                ItemStack item = event.getClickedItem();
+                //39 40 41
+                if (item == null && (event.getRawSlot() == 34 || event.getRawSlot() == 35 || event.getRawSlot() == 43 || event.getRawSlot() == 44)) {
+                    Garbage.startCleaning(event.getGui());
                 }
             }
 

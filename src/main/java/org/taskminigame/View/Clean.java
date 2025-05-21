@@ -33,9 +33,8 @@ public class Clean {
     }
 
     public static void State2(GUI gui) {
-        Inventory inventory = gui.getInventory();
-        Player player = gui.getPlayer();
-        gui.success();
+        gui.setState(2);
+        gui.success("clean");
     }
 
     public static void setTrash(GUI gui, int loc){

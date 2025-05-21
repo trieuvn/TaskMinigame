@@ -12,6 +12,8 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Admin
@@ -23,6 +25,8 @@ public class GUI implements InventoryHolder{
     private int type;
 
     private int amount;
+
+    private ArrayList<Integer> itemLocations;
     
     public GUI(Player player, int type, int slot){
         inventory = Bukkit.createInventory(this,slot);
@@ -68,10 +72,18 @@ public class GUI implements InventoryHolder{
         this.amount = amount;
     }
 
-    public void success(){
+    public ArrayList<Integer> getItemLocations() {
+        return itemLocations;
+    }
+
+    public void setItemLocations(ArrayList<Integer> itemLocations) {
+        this.itemLocations = itemLocations;
+    }
+
+    public void success(String task){
         // Phát âm thanh SUCCESS
         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "clean "+ player.getName() +" success");
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), task + " " + player.getName() + " success");
 
         // Tạo cooldown 2 giây và thực thi lệnh console
         new BukkitRunnable() {

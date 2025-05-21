@@ -27,6 +27,8 @@ public class Wiring {
         if (gui.getState() == 1){
             State2(gui);
             gui.setState(2);
+
+            gui.success("wiring");
         }
     }
 }

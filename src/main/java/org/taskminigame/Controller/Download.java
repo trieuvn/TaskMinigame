@@ -22,28 +22,22 @@ public class Download {
     }
 
     public static void startDownload(GUI gui) {
-        // Gọi State2 ngay lập tức
         State2(gui);
 
-        // Tạo biến đếm số lần lặp
         final int[] counter = {0};
         final int maxRuns = 8;
 
-        // Tạo BukkitRunnable để lặp addElement 5 lần
         new BukkitRunnable() {
             @Override
             public void run() {
-                // Gọi addElement
                 addElement(gui);
 
-                // Tăng bộ đếm
                 counter[0]++;
 
-                // Hủy task sau 5 lần lặp
                 if (counter[0] >= maxRuns) {
                     cancel();
                 }
             }
-        }.runTaskTimer(JavaPlugin.getProvidingPlugin(gui.getClass()), 10L, 10L); // Bắt đầu sau 10 ticks, lặp mỗi 10 ticks
+        }.runTaskTimer(JavaPlugin.getProvidingPlugin(gui.getClass()), 10L, 10L);
     }
 }

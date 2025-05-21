@@ -30,6 +30,7 @@ public class Download {
     }
 
     public static void State2(GUI gui){
+        gui.setState(2);
         ItemStack res = new ItemStack(Material.DIAMOND_SHOVEL);
         ItemMeta meta = res.getItemMeta();
         meta.displayName(Component.text(""));
@@ -40,7 +41,7 @@ public class Download {
 
     public static void addElement(GUI gui){
         if (gui.getAmount() > 6){
-            gui.success();
+            gui.success("download");
         }
         //37 38 39 40 41 42 43
         Inventory inventory = gui.getInventory();
