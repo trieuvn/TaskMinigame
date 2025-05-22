@@ -33,7 +33,7 @@ public class Navigation {
     }
     
     public static void done(GUI gui){
-        
+        gui.success("navigation");
     }
     
     /*

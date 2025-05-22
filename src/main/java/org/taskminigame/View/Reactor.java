@@ -26,4 +26,31 @@ public class Reactor {
         gui.getInventory().setItem(0,res);
         return gui;
     }
+    
+    public static ItemStack getBlueDot(){
+        ItemStack item = new ItemStack(Material.DIAMOND_SHOVEL);
+        ItemMeta meta = item.getItemMeta();
+        meta.displayName(Component.text(""));
+        meta.setCustomModelData(126);
+        item.setItemMeta(meta);
+        return item;
+    }
+    
+    public static ItemStack getNoLight(){
+        ItemStack item = new ItemStack(Material.DIAMOND_SHOVEL);
+        ItemMeta meta = item.getItemMeta();
+        meta.displayName(Component.text(""));
+        meta.setCustomModelData(127);
+        item.setItemMeta(meta);
+        return item;
+    }
+    
+    public static ItemStack getGreenLight(){
+        ItemStack item = new ItemStack(Material.DIAMOND_SHOVEL);
+        ItemMeta meta = item.getItemMeta();
+        meta.displayName(Component.text(""));
+        meta.setCustomModelData(128);
+        item.setItemMeta(meta);
+        return item;
+    }
 }

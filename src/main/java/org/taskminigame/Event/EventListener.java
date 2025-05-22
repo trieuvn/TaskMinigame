@@ -27,7 +27,7 @@ public class EventListener implements Listener {
                 ItemStack item = event.getClickedItem();
                 if (item != null && event.getRawSlot() != 0) {
                     if (Navigation.checkCursor(event.getGui())){
-                        //Navigation.done();
+                        Navigation.done(gui);
                     }
                 }
             }
