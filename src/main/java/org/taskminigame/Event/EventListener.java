@@ -8,6 +8,7 @@ import org.bukkit.inventory.ItemStack;
 import org.taskminigame.Controller.Clean;
 import org.taskminigame.Controller.Download;
 import org.taskminigame.Controller.Garbage;
+import org.taskminigame.Controller.Navigation;
 import org.taskminigame.Controller.Wiring;
 import org.taskminigame.Model.GUI;
 
@@ -18,6 +19,19 @@ public class EventListener implements Listener {
         GUI gui = event.getGui();
         Inventory inventory = gui.getInventory();
         if (inventory != null) {
+            //Navigation
+            if (gui.getType() == 117 && gui.getState() == 1) {
+                Player player = (Player) event.getOriginalEvent().getWhoClicked();
+                event.getOriginalEvent().setCancelled(true);
+                player.updateInventory();
+                ItemStack item = event.getClickedItem();
+                if (item != null && event.getRawSlot() != 0) {
+                    if (Navigation.checkCursor(event.getGui())){
+                        //Navigation.done();
+                    }
+                }
+            }
+            
             //Wiring
             if (gui.getType() == 119 && gui.getState() == 1) {
                 Player player = (Player) event.getOriginalEvent().getWhoClicked();

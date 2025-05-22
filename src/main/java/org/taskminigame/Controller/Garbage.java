@@ -25,7 +25,6 @@ import static org.taskminigame.View.Garbage.*;
 public class Garbage {
     public static void open(Player player){
         GUI gui = State1(player);
-        player.openInventory(gui.getInventory());
         int[] locList = getRandomLocation(7);
         ArrayList<Integer> arrayList = new ArrayList<>();
         for (int i : locList){
@@ -34,6 +33,8 @@ public class Garbage {
         }
         gui.setItemLocations(arrayList);
         gui.setAmount(7);
+        
+        player.openInventory(gui.getInventory());
     }
 
     public static void startCleaning(GUI gui){

@@ -26,4 +26,24 @@ public class Navigation {
         gui.getInventory().setItem(0,res);
         return gui;
     }
+    
+    public static boolean isCursor(ItemStack item){
+        ItemMeta meta = item.getItemMeta();   
+        if (meta.getCustomModelData() == 118)
+            return true;
+        return false;
+    }
+    
+    public static void setCursor(GUI gui, int loc){
+        gui.getInventory().setItem(loc, Cursor());
+    }
+
+    public static ItemStack Cursor(){
+        ItemStack trash = new ItemStack(Material.FEATHER);
+        ItemMeta meta = trash.getItemMeta();
+        meta.displayName(Component.text("TAKE AIM"));
+        meta.setCustomModelData(118);
+        trash.setItemMeta(meta);
+        return trash;
+    }
 }

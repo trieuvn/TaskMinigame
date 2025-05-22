@@ -4,10 +4,13 @@
  */
 package org.taskminigame.Controller;
 
+import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.taskminigame.Model.GUI;
 
-import static org.taskminigame.View.Navigation.State1;
+import static org.taskminigame.View.Navigation.*;
 
 /**
  *
@@ -16,6 +19,47 @@ import static org.taskminigame.View.Navigation.State1;
 public class Navigation {
     public static void open(Player player){
         GUI gui = State1(player);
+        int cursorLoc = getRandomNumber();
+        setCursor(gui, cursorLoc);
+        
         player.openInventory(gui.getInventory());
     }
+    
+    public static boolean checkCursor(GUI gui){
+        Inventory inventory = gui.getInventory();
+        if (isCursor(inventory.getItem(31)))
+            return true;
+        return false;
+    }
+    
+    public static void done(GUI gui){
+        
+    }
+    
+    /*
+        12-14
+        20-24
+        29-33
+        38-42
+        48-50
+    */
+    public static int getRandomNumber() {
+        // Định nghĩa các khoảng
+        int[][] ranges = {
+            {12, 14},
+            {20, 24},
+            {29, 33},
+            {38, 42},
+            {48, 50}
+        };
+        
+        // Chọn ngẫu nhiên một khoảng
+        int[] selectedRange = ranges[ThreadLocalRandom.current().nextInt(ranges.length)];
+        int min = selectedRange[0];
+        int max = selectedRange[1];
+        
+        // Sinh số ngẫu nhiên trong khoảng [min, max]
+        return ThreadLocalRandom.current().nextInt(min, max + 1);
+    }
+
 }
