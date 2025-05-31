@@ -4,10 +4,17 @@
  */
 package org.taskminigame.Controller;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
+import org.bukkit.Material;
+import static org.bukkit.Registry.MATERIAL;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.taskminigame.Model.GUI;
@@ -23,33 +30,27 @@ public class Reactor {
     public static void open(Player player){
         GUI gui = State1(player);
         Inventory inventory = gui.getInventory();
+        //Khởi tạo 4 cham trang
         for (int i=9;i<13;i++){
             inventory.setItem(i, getNoLight());
         }
         for (int i=13;i<17;i++){
             inventory.setItem(i, getNoLight());
         }
-        
+        ArrayList<Integer> pointList = new ArrayList<Integer>();
+        for (int i=0;i<4;i++){
+            pointList.add(getRandomNumber());
+        }
+        gui.setItemLocations(pointList);
         
         player.openInventory(gui.getInventory());
     }
     
-    public static int setNewPoint(GUI gui){
+    public static void showNewPoint(GUI gui, Integer slot){
         Inventory inventory = gui.getInventory();
-        int randomSlot = getRandomNumber();
-        boolean s = false;
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                gui.getInventory().setItem(randomSlot, getBlueDot());
-                
-                if (s == true) {
-                    cancel();
-                }
-                //Loop 2 lan
-            }
-        }.runTaskTimer(JavaPlugin.getProvidingPlugin(gui.getClass()), 10L, 10L);
-        return randomSlot;
+        inventory.setItem(slot, getBlueDot());
+        inventory.setItem(slot, new ItemStack(Material.AIR));
+        
     }
     
     public static void onClick(GUI gui, int loc){
