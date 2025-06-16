@@ -25,6 +25,7 @@ public final class TaskMinigame extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
+        Reactor.createBtnMap();
         getServer().getPluginManager().registerEvents(new GUIListener(),this);
         getServer().getPluginManager().registerEvents(new EventListener(),this);
         getCommand("sus").setExecutor(this);

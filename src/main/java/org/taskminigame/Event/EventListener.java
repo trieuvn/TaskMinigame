@@ -5,11 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.taskminigame.Controller.Clean;
-import org.taskminigame.Controller.Download;
-import org.taskminigame.Controller.Garbage;
-import org.taskminigame.Controller.Navigation;
-import org.taskminigame.Controller.Wiring;
+import org.taskminigame.Controller.*;
 import org.taskminigame.Model.GUI;
 
 public class EventListener implements Listener {
@@ -19,6 +15,17 @@ public class EventListener implements Listener {
         GUI gui = event.getGui();
         Inventory inventory = gui.getInventory();
         if (inventory != null) {
+            //Navigation
+            if (gui.getType() == 125 && gui.getState() != -1) {
+                Player player = (Player) event.getOriginalEvent().getWhoClicked();
+                event.getOriginalEvent().setCancelled(true);
+                player.updateInventory();
+                ItemStack item = event.getClickedItem();
+                int slot = event.getRawSlot();
+                if (item == null && ((slot > 23 && slot < 27) || (slot > 32 && slot < 36) || (slot > 41 && slot < 45))) {
+                    Reactor.onClick(gui,slot);
+                }
+            }
             //Navigation
             if (gui.getType() == 117 && gui.getState() == 1) {
                 Player player = (Player) event.getOriginalEvent().getWhoClicked();

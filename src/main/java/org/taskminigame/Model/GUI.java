@@ -27,6 +27,8 @@ public class GUI implements InventoryHolder{
     private int amount;
 
     private ArrayList<Integer> itemLocations;
+
+    private int playerScore;
     
     public GUI(Player player, int type, int slot){
         inventory = Bukkit.createInventory(this,slot);
@@ -92,5 +94,13 @@ public class GUI implements InventoryHolder{
                 inventory.close();
             }
         }.runTaskLater(JavaPlugin.getProvidingPlugin(this.getClass()), 40L); // 40 ticks = 2 giây
+    }
+
+    public int getPlayerScore() {
+        return playerScore;
+    }
+
+    public void setPlayerScore(int playerScore) {
+        this.playerScore = playerScore;
     }
 }
