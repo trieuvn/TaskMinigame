@@ -35,7 +35,7 @@ Use the `/sus` command to start a task for a player:
 Once the player completes the task, the plugin will automatically run the following command in the console:
 
 ```
-/<task> <player name> success
+/ce call <task>_task %player_name%=<player name>
 ```
 
 This lets you hook into other plugins or systems based on task completion!
@@ -51,7 +51,7 @@ This lets you hook into other plugins or systems based on task completion!
 ➡️ When *Steve* finishes the wiring task, the server executes:
 
 ```
-/wiring Steve success
+/ce call wiring_task %player_name%=Steve
 ```
 
 

@@ -85,7 +85,7 @@ public class GUI implements InventoryHolder{
     public void success(String task){
         // Phát âm thanh SUCCESS
         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), task + " " + player.getName() + " success");
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "ce call " + task + "_task %player_name%=" + player.getName());
 
         // Tạo cooldown 2 giây và thực thi lệnh console
         new BukkitRunnable() {
