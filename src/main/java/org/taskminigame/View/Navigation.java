@@ -39,7 +39,7 @@ public class Navigation {
     }
 
     public static ItemStack Cursor(){
-        ItemStack trash = new ItemStack(Material.FEATHER);
+        ItemStack trash = new ItemStack(Material.DIAMOND_SHOVEL);
         ItemMeta meta = trash.getItemMeta();
         meta.displayName(Component.text("TAKE AIM"));
         meta.setCustomModelData(118);

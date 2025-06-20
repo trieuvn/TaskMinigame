@@ -6,8 +6,11 @@ package org.taskminigame.Controller;
 
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
+
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.taskminigame.Model.GUI;
 
 import static org.taskminigame.View.Navigation.*;
@@ -25,9 +28,11 @@ public class Navigation {
         player.openInventory(gui.getInventory());
     }
     
-    public static boolean checkCursor(GUI gui){
-        Inventory inventory = gui.getInventory();
-        if (isCursor(inventory.getItem(31)))
+    public static boolean checkCursor(ItemStack item){
+        if (item == null) return false;
+        if (item.getItemMeta() == null) return false;
+        if (!item.getItemMeta().hasCustomModelData()) return false;
+        if (isCursor(item))
             return true;
         return false;
     }
