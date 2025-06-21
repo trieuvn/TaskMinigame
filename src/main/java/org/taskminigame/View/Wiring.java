@@ -9,22 +9,11 @@ import org.taskminigame.Model.GUI;
 
 public class Wiring {
     public static GUI State1(Player player){
-        GUI gui = new GUI(player,119,54);
-        ItemStack res = new ItemStack(Material.DIAMOND_SHOVEL);
-        ItemMeta meta = res.getItemMeta();
-        meta.displayName(Component.text(""));
-        meta.setCustomModelData(119);
-        res.setItemMeta(meta);
-        gui.getInventory().setItem(0,res);
+        GUI gui = new GUI(player,119,54,"<shift:-14>&fꑜ");
         return gui;
     }
 
     public static void State2(GUI gui){
-        ItemStack res = new ItemStack(Material.DIAMOND_SHOVEL);
-        ItemMeta meta = res.getItemMeta();
-        meta.displayName(Component.text(""));
-        meta.setCustomModelData(120);
-        res.setItemMeta(meta);
-        gui.getInventory().setItem(0,res);
+        gui.getPlayer().getOpenInventory().setTitle("<shift:-14>&fꑝ");
     }
 }

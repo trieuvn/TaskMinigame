@@ -18,25 +18,14 @@ import org.taskminigame.Model.GUI;
  */
 public class Download {
     public static GUI State1(Player player){
-        GUI gui = new GUI(player,121,54);
-        ItemStack res = new ItemStack(Material.DIAMOND_SHOVEL);
-        ItemMeta meta = res.getItemMeta();
-        meta.displayName(Component.text(""));
-        meta.setCustomModelData(121);
-        res.setItemMeta(meta);
-        gui.getInventory().setItem(0,res);
+        GUI gui = new GUI(player,121,54,"<shift:-14>&fꑖ");
         gui.setAmount(0);
         return gui;
     }
 
     public static void State2(GUI gui){
         gui.setState(2);
-        ItemStack res = new ItemStack(Material.DIAMOND_SHOVEL);
-        ItemMeta meta = res.getItemMeta();
-        meta.displayName(Component.text(""));
-        meta.setCustomModelData(122);
-        res.setItemMeta(meta);
-        gui.getInventory().setItem(0,res);
+        gui.getPlayer().getOpenInventory().setTitle("<shift:-14>&fꑗ");
     }
 
     public static void addElement(GUI gui){

@@ -4,6 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.taskminigame.Controller.*;
@@ -12,11 +13,11 @@ import org.taskminigame.Model.GUI;
 public class EventListener implements Listener {
     @EventHandler
     public void onPlayerSelect(GUIClickEvent event){
-        //event.setCancelled(true);
+        event.setCancelled(true);
         GUI gui = event.getGui();
         Inventory inventory = gui.getInventory();
         if (inventory != null) {
-            //Navigation
+            //Reactor
             if (gui.getType() == 125 && gui.getState() != -1) {
                 Player player = (Player) event.getOriginalEvent().getWhoClicked();
                 event.getOriginalEvent().setCancelled(true);
@@ -29,17 +30,25 @@ public class EventListener implements Listener {
             }
             //Navigation
             if (gui.getType() == 117 && gui.getState() == 1) {
-                if (event.getRawSlot() != 0) {
-                    ItemStack item = event.getOriginalEvent().getCursor();
-                    if (event.getRawSlot() == 31){
-                        if (Navigation.checkCursor(item)){
-                            gui.setState(0);
-                            Navigation.done(gui);
-                        }
-                    }
-                }else{
-                    event.getOriginalEvent().setCancelled(true);
+                if (event.getOriginalEvent().getSlotType() == InventoryType.SlotType.OUTSIDE) return ;
+                ItemStack clickedItem = event.getClickedItem();
+                ItemStack cursor = event.getOriginalEvent().getCursor();
+                //check vị trí click trong rương
+                if (Navigation.checkCursor(clickedItem) && event.getOriginalEvent().getInventory().getType() == InventoryType.CHEST && event.getRawSlot() < event.getOriginalEvent().getView().getTopInventory().getSize()){
+                    event.getPlayer().setItemOnCursor(clickedItem);
+                    event.getOriginalEvent().getInventory().setItem(event.getRawSlot(), null);
+                }else if (clickedItem == null && Navigation.checkCursor(cursor) && event.getOriginalEvent().getInventory().getType() == InventoryType.CHEST && event.getRawSlot() < event.getOriginalEvent().getView().getTopInventory().getSize()){
+                    event.getPlayer().setItemOnCursor(null);
+                    event.getOriginalEvent().getInventory().setItem(event.getRawSlot(), cursor);
                 }
+
+                if (event.getRawSlot() == 31){
+                    if (Navigation.checkCursor(cursor)){
+                        gui.setState(0);
+                        Navigation.done(gui);
+                    }
+                }
+
             }
             
             //Wiring
@@ -83,7 +92,7 @@ public class EventListener implements Listener {
                 event.getOriginalEvent().setCancelled(true);
                 player.updateInventory();
                 ItemStack item = event.getClickedItem();
-                if (item != null && event.getRawSlot() != 0) {
+                if (item != null) {
                     Clean.moveTrash(gui,item, event.getRawSlot());
                 }
             }

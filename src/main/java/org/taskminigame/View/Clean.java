@@ -22,13 +22,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class Clean {
     public static GUI State1(Player player){
-        GUI gui = new GUI(player,131,54);
-        ItemStack res = new ItemStack(Material.DIAMOND_SHOVEL);
-        ItemMeta meta = res.getItemMeta();
-        meta.displayName(Component.text(""));
-        meta.setCustomModelData(131);
-        res.setItemMeta(meta);
-        gui.getInventory().setItem(0,res);
+        GUI gui = new GUI(player, 131, 54, "<shift:-14>&fꐽ");
         return gui;
     }
 

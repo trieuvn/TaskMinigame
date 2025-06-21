@@ -18,24 +18,13 @@ import org.taskminigame.Model.GUI;
 public class Garbage {
     //34 35 43 44
     public static GUI State1(Player player){
-        GUI gui = new GUI(player,129,54);
-        ItemStack res = new ItemStack(Material.DIAMOND_SHOVEL);
-        ItemMeta meta = res.getItemMeta();
-        meta.displayName(Component.text(""));
-        meta.setCustomModelData(129);
-        res.setItemMeta(meta);
-        gui.getInventory().setItem(0,res);
+        GUI gui = new GUI(player,129,54,"<shift:-14>&fꑘ");
         return gui;
     }
 
     public static void State2(GUI gui){
         gui.setState(2);
-        ItemStack res = new ItemStack(Material.DIAMOND_SHOVEL);
-        ItemMeta meta = res.getItemMeta();
-        meta.displayName(Component.text(""));
-        meta.setCustomModelData(130);
-        res.setItemMeta(meta);
-        gui.getInventory().setItem(0,res);
+        gui.getPlayer().getOpenInventory().setTitle("<shift:-14>&fꑙ");
     }
 
     public static void State3(GUI gui){

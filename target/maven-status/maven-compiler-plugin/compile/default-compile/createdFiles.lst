@@ -22,3 +22,4 @@ org\taskminigame\Controller\Refuel.class
 org\taskminigame\Event\EventListener.class
 org\taskminigame\Model\GUI.class
 org\taskminigame\View\Refuel.class
+org\taskminigame\Controller\Reactor$2.class

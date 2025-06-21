@@ -4,6 +4,7 @@
  */
 package org.taskminigame.Model;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -11,6 +12,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 
 import java.util.ArrayList;
 
@@ -29,9 +32,10 @@ public class GUI implements InventoryHolder{
     private ArrayList<Integer> itemLocations;
 
     private int playerScore;
-    
-    public GUI(Player player, int type, int slot){
-        inventory = Bukkit.createInventory(this,slot);
+
+    public GUI(Player player, int type, int slot, String title) {
+        MiniMessage miniMessage = MiniMessage.miniMessage();
+        inventory = Bukkit.createInventory(this, slot, miniMessage.deserialize(title));
         this.player = player;
         this.type = type;
         this.state = 1;
@@ -84,7 +88,7 @@ public class GUI implements InventoryHolder{
 
     public void success(String task){
         // Phát âm thanh SUCCESS
-        player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
+        //player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "ce call " + task + "_task %player_name%=" + player.getName());
 
         // Tạo cooldown 2 giây và thực thi lệnh console

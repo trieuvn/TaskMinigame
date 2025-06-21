@@ -17,13 +17,7 @@ import org.taskminigame.Model.GUI;
  */
 public class Reactor {
     public static GUI State1(Player player){
-        GUI gui = new GUI(player,125,54);
-        ItemStack res = new ItemStack(Material.DIAMOND_SHOVEL);
-        ItemMeta meta = res.getItemMeta();
-        meta.displayName(Component.text(""));
-        meta.setCustomModelData(125);
-        res.setItemMeta(meta);
-        gui.getInventory().setItem(0,res);
+        GUI gui = new GUI(player,125,54,"<shift:-14>&fꑛ");
         return gui;
     }
     
@@ -32,6 +26,15 @@ public class Reactor {
         ItemMeta meta = item.getItemMeta();
         meta.displayName(Component.text(""));
         meta.setCustomModelData(126);
+        item.setItemMeta(meta);
+        return item;
+    }
+
+    public static ItemStack getClickedDot(){
+        ItemStack item = new ItemStack(Material.DIAMOND_SHOVEL);
+        ItemMeta meta = item.getItemMeta();
+        meta.displayName(Component.text(""));
+        meta.setCustomModelData(1281);
         item.setItemMeta(meta);
         return item;
     }

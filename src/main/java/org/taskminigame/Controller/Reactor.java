@@ -96,9 +96,17 @@ public class Reactor {
     public static void onClick(GUI gui, int clickedLoc){
         if (gui.getState() == -1) return ;
         int loc = btnMap[clickedLoc];
+        Inventory inventory = gui.getInventory();
+        inventory.setItem(clickedLoc, getBlueDot());
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                inventory.setItem(clickedLoc, new ItemStack(Material.AIR));
+            }
+        }.runTaskLater(JavaPlugin.getProvidingPlugin(gui.getClass()), 10);
         gui.setState(-1);
         Integer amount = gui.getAmount();
-        Inventory inventory = gui.getInventory();
+        //Inventory inventory = gui.getInventory();
         ArrayList<Integer> pointList = gui.getItemLocations();
         int score = gui.getPlayerScore();
         //Player chon sai
