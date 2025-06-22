@@ -14,6 +14,6 @@ public class Wiring {
     }
 
     public static void State2(GUI gui){
-        gui.getPlayer().getOpenInventory().setTitle("ꑝ");
+        gui.setTitle("ꑝ");
     }
 }

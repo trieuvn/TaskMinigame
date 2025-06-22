@@ -25,7 +25,7 @@ public class Download {
 
     public static void State2(GUI gui){
         gui.setState(2);
-        gui.getPlayer().getOpenInventory().setTitle("ꑗ");
+        gui.setTitle("ꑗ");
     }
 
     public static void addElement(GUI gui){

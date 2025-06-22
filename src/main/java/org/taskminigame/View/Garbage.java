@@ -24,7 +24,7 @@ public class Garbage {
 
     public static void State2(GUI gui){
         gui.setState(2);
-        gui.getPlayer().getOpenInventory().setTitle("ꑙ");
+        gui.setTitle("ꑙ");
     }
 
     public static void State3(GUI gui){

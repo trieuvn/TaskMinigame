@@ -38,13 +38,22 @@ public class GUI implements InventoryHolder{
 
     private int playerScore;
 
+    private String title;
+
     public GUI(Player player, int type, int slot, String title) {
         MiniMessage miniMessage = MiniMessage.miniMessage();
+        this.title = miniMessage.deserialize("<shift:"+shift.toString()+">"+title).color(NamedTextColor.WHITE).toString();
         inventory = Bukkit.createInventory(this, slot, miniMessage.deserialize("<shift:"+shift.toString()+">"+title).color(NamedTextColor.WHITE));
         this.player = player;
         this.type = type;
         this.state = 1;
         this.amount = 1;
+    }
+
+    public void setTitle(String title){
+        title = "<shift:"+shift.toString()+">§f"+title;
+        this.title = title;
+        player.getOpenInventory().setTitle(this.title);
     }
 
     public Inventory getInventory() {
