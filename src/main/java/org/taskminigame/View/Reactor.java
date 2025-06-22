@@ -17,7 +17,7 @@ import org.taskminigame.Model.GUI;
  */
 public class Reactor {
     public static GUI State1(Player player){
-        GUI gui = new GUI(player,125,54,"<shift:-14>&fꑛ");
+        GUI gui = new GUI(player,125,54,"ꑛ");
         return gui;
     }
     

@@ -9,11 +9,11 @@ import org.taskminigame.Model.GUI;
 
 public class Wiring {
     public static GUI State1(Player player){
-        GUI gui = new GUI(player,119,54,"<shift:-14>&fꑜ");
+        GUI gui = new GUI(player,119,54,"ꑜ");
         return gui;
     }
 
     public static void State2(GUI gui){
-        gui.getPlayer().getOpenInventory().setTitle("<shift:-14>&fꑝ");
+        gui.getPlayer().getOpenInventory().setTitle("ꑝ");
     }
 }

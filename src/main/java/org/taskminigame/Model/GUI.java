@@ -5,6 +5,8 @@
 package org.taskminigame.Model;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
@@ -24,6 +26,8 @@ import java.util.ArrayList;
  */
 public class GUI implements InventoryHolder{
     private Inventory inventory;
+
+    private Integer shift = -8;
     private final Player player;
     private int state;
     private int type;
@@ -36,7 +40,7 @@ public class GUI implements InventoryHolder{
 
     public GUI(Player player, int type, int slot, String title) {
         MiniMessage miniMessage = MiniMessage.miniMessage();
-        inventory = Bukkit.createInventory(this, slot, miniMessage.deserialize(title));
+        inventory = Bukkit.createInventory(this, slot, miniMessage.deserialize("<shift:"+shift.toString()+">"+title).color(NamedTextColor.WHITE));
         this.player = player;
         this.type = type;
         this.state = 1;

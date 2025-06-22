@@ -22,7 +22,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class Clean {
     public static GUI State1(Player player){
-        GUI gui = new GUI(player, 131, 54, "<shift:-14>&fꐽ");
+        GUI gui = new GUI(player, 131, 54, "ꐽ");
         return gui;
     }
 

@@ -18,13 +18,13 @@ import org.taskminigame.Model.GUI;
 public class Garbage {
     //34 35 43 44
     public static GUI State1(Player player){
-        GUI gui = new GUI(player,129,54,"<shift:-14>&fꑘ");
+        GUI gui = new GUI(player,129,54,"ꑘ");
         return gui;
     }
 
     public static void State2(GUI gui){
         gui.setState(2);
-        gui.getPlayer().getOpenInventory().setTitle("<shift:-14>&fꑙ");
+        gui.getPlayer().getOpenInventory().setTitle("ꑙ");
     }
 
     public static void State3(GUI gui){

@@ -18,14 +18,14 @@ import org.taskminigame.Model.GUI;
  */
 public class Download {
     public static GUI State1(Player player){
-        GUI gui = new GUI(player,121,54,"<shift:-14>&fꑖ");
+        GUI gui = new GUI(player,121,54,"ꑖ");
         gui.setAmount(0);
         return gui;
     }
 
     public static void State2(GUI gui){
         gui.setState(2);
-        gui.getPlayer().getOpenInventory().setTitle("<shift:-14>&fꑗ");
+        gui.getPlayer().getOpenInventory().setTitle("ꑗ");
     }
 
     public static void addElement(GUI gui){
