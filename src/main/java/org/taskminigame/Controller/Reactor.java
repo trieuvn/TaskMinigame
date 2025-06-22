@@ -12,6 +12,8 @@ import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import org.bukkit.Material;
 import static org.bukkit.Registry.MATERIAL;
+
+import org.bukkit.SoundCategory;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -63,6 +65,7 @@ public class Reactor {
         Integer amount = gui.getAmount();
         Inventory inventory = gui.getInventory();
         ArrayList<Integer> pointList = gui.getItemLocations();
+        Player player = gui.getPlayer();
 
         // Đặt state thành -1 để khóa tương tác
         gui.setState(-1);
@@ -75,6 +78,7 @@ public class Reactor {
             public void run() {
                 if (index < amount) {
                     inventory.setItem(pointList.get(index), getBlueDot());
+                    player.playSound(player.getLocation(), "minecraft:reactor_click", SoundCategory.MASTER, 1.0f, 1.0f);
 
                     new BukkitRunnable() {
                         @Override
@@ -96,8 +100,10 @@ public class Reactor {
     public static void onClick(GUI gui, int clickedLoc){
         if (gui.getState() == -1) return ;
         int loc = btnMap[clickedLoc];
+        Player player = gui.getPlayer();
+        player.playSound(player.getLocation(), "minecraft:reactor_click", SoundCategory.MASTER, 1.0f, 1.0f);
         Inventory inventory = gui.getInventory();
-        inventory.setItem(clickedLoc, getBlueDot());
+        inventory.setItem(clickedLoc, getClickedDot());
         new BukkitRunnable() {
             @Override
             public void run() {

@@ -5,6 +5,7 @@
 package org.taskminigame.Controller;
 
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.taskminigame.Model.GUI;
@@ -26,10 +27,15 @@ public class Download {
 
         final int[] counter = {0};
         final int maxRuns = 8;
-
+        Inventory inventory = gui.getInventory();
         new BukkitRunnable() {
             @Override
             public void run() {
+                if (!gui.getPlayer().getOpenInventory().getTopInventory().equals(inventory)) {
+                    cancel(); // Cancel task if inventory is closed
+                    return;
+                }
+
                 addElement(gui);
 
                 counter[0]++;

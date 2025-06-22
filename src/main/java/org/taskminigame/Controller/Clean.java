@@ -5,6 +5,7 @@
 package org.taskminigame.Controller;
 
 import org.bukkit.Material;
+import org.bukkit.SoundCategory;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -38,6 +39,8 @@ public class Clean {
 
     public static void moveTrash(GUI gui, ItemStack item, int loc) {
         Inventory inventory = gui.getInventory();
+        Player player = gui.getPlayer();
+        player.playSound(player.getLocation(), "minecraft:block.azalea_leaves.hit", SoundCategory.MASTER, 1.0f, 1.0f);
         // Kiểm tra item và vị trí hợp lệ
         if (item == null || item.getType() == Material.AIR || loc < 0 || loc >= inventory.getSize()) {
             return;

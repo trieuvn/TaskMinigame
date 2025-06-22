@@ -7,6 +7,7 @@ package org.taskminigame.Model;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
+import org.bukkit.SoundCategory;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
@@ -88,6 +89,7 @@ public class GUI implements InventoryHolder{
 
     public void success(String task){
         // Phát âm thanh SUCCESS
+        //player.playSound(player.getLocation(), "minecraft:welcome", SoundCategory.MASTER, 1.0f, 1.0f);
         //player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "ce call " + task + "_task %player_name%=" + player.getName());
 

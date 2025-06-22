@@ -3,6 +3,7 @@ package org.taskminigame.Controller;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.SoundCategory;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
@@ -25,6 +26,8 @@ public class Wiring {
 
     public static void done(GUI gui){
         if (gui.getState() == 1){
+            Player player = gui.getPlayer();
+            player.playSound(player.getLocation(), "minecraft:wiring_switch", SoundCategory.MASTER, 1.0f, 1.0f);
             State2(gui);
             gui.setState(2);
 

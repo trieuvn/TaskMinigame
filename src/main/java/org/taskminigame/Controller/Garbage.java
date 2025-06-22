@@ -5,6 +5,7 @@
 package org.taskminigame.Controller;
 
 import org.bukkit.Material;
+import org.bukkit.SoundCategory;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -38,80 +39,42 @@ public class Garbage {
     }
 
     public static void startCleaning(GUI gui){
+        Player player = gui.getPlayer();
+        player.playSound(player.getLocation(), "minecraft:garbage_start", SoundCategory.MASTER, 1.0f, 1.0f);
         State2(gui);
-
+        Inventory inventory = gui.getInventory();
         new BukkitRunnable() {
             @Override
             public void run() {
-                ArrayList<Integer> arrayList = new ArrayList<>();
-                for (Integer i : gui.getItemLocations()){
-                    moveTrash(gui, Trash(), i);
-                    arrayList.add(i+9);
+                if (!gui.getPlayer().getOpenInventory().getTopInventory().equals(inventory)) {
+                    cancel(); // Cancel task if inventory is closed
+                    return;
                 }
-                gui.setItemLocations(arrayList);
-                if (gui.getAmount() == 0) {
-                    State3(gui);
+                boolean res = moveTrash(gui);
+                if (res){
+                    gui.success("garbage");
                     cancel();
                 }
             }
         }.runTaskTimer(JavaPlugin.getProvidingPlugin(gui.getClass()), 10L, 10L);
     }
 
-    public static void moveTrash(GUI gui, ItemStack item, int loc) {
+    public static boolean moveTrash(GUI gui) {
+        //empty = true
         Inventory inventory = gui.getInventory();
-        // Kiểm tra item và vị trí hợp lệ
-        if (item == null || item.getType() == Material.AIR || loc < 0 || loc >= inventory.getSize()) {
-            return;
+        ArrayList<Integer> locList = gui.getItemLocations();
+        ArrayList<Integer> newLocList = new ArrayList<>();
+
+        for (Integer itemLoc : locList){
+            inventory.setItem(itemLoc,null);
+            itemLoc+=9;
+            if (itemLoc > 53) continue;
+            newLocList.add(itemLoc);
+            inventory.setItem(itemLoc,Trash());
         }
-
-        // Kiểm tra vị trí đặc biệt (1, 10, 19, 28, 37, 46)
-        if (loc > 44 && loc < 51) {
-            if (item.getAmount() > 1) {
-                // Giảm stack đi 1
-                item.setAmount(item.getAmount() - 1);
-                inventory.setItem(loc, item);
-            } else {
-                // Nếu stack = 1, xóa item
-                inventory.setItem(loc, new ItemStack(Material.AIR));
-            }
-            gui.setAmount(gui.getAmount()-1);
-            if (gui.getAmount() == 0){
-                State3(gui);
-            }
-            return;
-        }
-
-        // Lấy ô bên duoi
-        ItemStack leftItem = inventory.getItem(loc + 9);
-
-        if (item.getAmount() > 1) {
-            // Nếu stack > 1, tách 1 item
-            ItemStack singleItem = new ItemStack(item.getType(), 1);
-            // Giảm stack hiện tại đi 1
-            item.setAmount(item.getAmount() - 1);
-            inventory.setItem(loc, item);
-
-            if (leftItem != null && leftItem.getType() == item.getType() && leftItem.getAmount() < leftItem.getMaxStackSize()) {
-                // Nếu ô bên trái có item cùng loại và chưa đầy stack, cộng thêm 1
-                leftItem.setAmount(leftItem.getAmount() + 1);
-                inventory.setItem(loc + 9, leftItem);
-            } else if (leftItem == null || leftItem.getType() == Material.AIR) {
-                // Nếu ô bên trái trống, đặt item tách ra vào đó
-                inventory.setItem(loc + 9, singleItem);
-            }
-        } else {
-            // Nếu stack = 1, di chuyển toàn bộ item sang trái
-            if (leftItem != null && leftItem.getType() == item.getType() && leftItem.getAmount() < leftItem.getMaxStackSize()) {
-                // Nếu ô bên trái có item cùng loại và chưa đầy stack, cộng thêm 1
-                leftItem.setAmount(leftItem.getAmount() + 1);
-                inventory.setItem(loc + 9, leftItem);
-                inventory.setItem(loc, new ItemStack(Material.AIR));
-            } else if (leftItem == null || leftItem.getType() == Material.AIR) {
-                // Nếu ô bên trái trống, di chuyển item sang đó
-                inventory.setItem(loc + 9, item);
-                inventory.setItem(loc, new ItemStack(Material.AIR));
-            }
-        }
+        gui.setItemLocations(newLocList);
+        if (newLocList.isEmpty())   return true;
+        return false;
     }
 
     public static int[] getRandomLocation(int size){
