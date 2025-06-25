@@ -1,5 +1,6 @@
 package org.taskminigame.Event;
 
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -100,11 +101,20 @@ public class EventListener implements Listener {
     }
 
     @EventHandler
-    public void onPlayerSelect(InventoryCloseEvent event){
+    public void onPlayerCloseInventory(InventoryCloseEvent event){
         ItemStack item = event.getPlayer().getItemOnCursor();
         if (item == null) return ;
         if (Navigation.checkCursor(item)){
             event.getPlayer().setItemOnCursor(null);
+        }
+
+        HumanEntity player = event.getPlayer();
+        Inventory playerInventory = player.getInventory();
+        for (int i = 0; i < playerInventory.getSize(); i++) {
+            ItemStack itemnav = playerInventory.getItem(i);
+            if (item != null && Navigation.checkCursor(itemnav)) {
+                playerInventory.setItem(i, null);
+            }
         }
     }
 }
